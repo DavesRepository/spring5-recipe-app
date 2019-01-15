@@ -6,7 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -24,6 +26,9 @@ public class Recipe {
   private String direction;
   //todo add
   //private Difficulty difficulty;
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+  private Set<Ingredient> ingredients;
 
   @Lob //Will be stoed as a BLOB (Binary Large Object)
   private Byte[] image;
