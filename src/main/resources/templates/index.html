@@ -1,10 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Recipe Home</title>
+  <meta charset="UTF-8"/>
+  <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+  <title>Recipe Home</title>
 </head>
-<body>
-<h1>My Recipes!</h1>
+<body class="recipe-template-default single single-recipe postid-159 recipe-perfect_guacamole ui-desktop js">
+
+<div class="site-main">
+  <div class="container">
+
+    <div id="sr-recipe-callout" class="recipe-callout" th:each="recipe : ${recipes}">
+
+      <h2 th:text="${recipe.getDescription()}">How to Make [insert-name] Recipe</h2>
+
+      <a th:href="${recipe.getUrl()}" class="print-link button-action top"><span> Source </span></a>
+
+      <div class="recipe-meta">
+        <ul>
+          <li class="recipe-prep"><span class="recipemeta-label">Prep time:</span> <span
+              class="preptime" th:text="|${recipe.getPrepTime()} minutes|">XX minutes<span
+              class="value-title" title="PT00H10M"></span></span>
+          </li>
+          <li th:if="${recipe.getCookTime() > 0}" class="recipe-prep"><span class="recipemeta-label">Cook time:</span> <span
+              class="preptime" th:text="|${recipe.getCookTime()} minutes|">XX minutes<span
+              class="value-title" title="PT00H10M"></span></span>
+          </li>
+          <li class="recipe-yield"><span class="recipemeta-label">Yield:</span>
+            <span class="yield" th:text="|Serves ${recipe.getServings()} |">Serves X</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="entry-details recipe-ingredients">
+        <h3>Ingredients</h3>
+
+        <ul class="used">
+          <li class="ingredient" th:each="ingredient : ${recipe.getIngredients()}"
+              th:text="|${ingredient.getAmount()} ${ingredient.getUom() != null?ingredient.getUom().getDescription():''} ${ingredient.getDescription()}|">
+            2 xxxx
+          </li>
+        </ul>
+      </div>
+
+      <div id="sr-recipe-method" class="entry-details recipe-method instructions">
+        <h3>Method</h3>
+        <div th:utext="${recipe.getNotes().getRecipeNotes()}">
+        </div>
+      </div>
+
+      <div>
+        <p><b>Source:</b> <i th:text="${recipe.getSource()}"></i>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

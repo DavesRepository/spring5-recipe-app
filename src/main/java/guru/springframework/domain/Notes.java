@@ -12,7 +12,7 @@ public class Notes {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long io;
+  private Long id;
 
   @OneToOne
   private Recipe recipe;
@@ -23,12 +23,12 @@ public class Notes {
   @Lob
   private String recipeNotes;
 
-  public Long getIo() {
-    return io;
+  public Long getId() {
+    return id;
   }
 
-  public void setIo(Long io) {
-    this.io = io;
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public Recipe getRecipe() {

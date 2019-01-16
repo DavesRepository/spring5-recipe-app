@@ -13,6 +13,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,11 +21,11 @@ public class Recipe {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long io;
+  private Long id;
 
   private String description;
   private Integer prepTime;
-  private Integer dcookTime;
+  private Integer cookTime;
   private Integer servings;
   private String source;
   private String url;
@@ -34,7 +35,7 @@ public class Recipe {
   private Difficulty difficulty;
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-  private Set<Ingredient> ingredients;
+  private Set<Ingredient> ingredients = new HashSet<>();
 
   @Lob //Will be stoed as a BLOB (Binary Large Object)
   private Byte[] image;
@@ -48,12 +49,12 @@ public class Recipe {
              inverseJoinColumns = @JoinColumn(name = "category_id"))
   private Set<Category> categories;
 
-  public Long getIo() {
-    return io;
+  public Long getId() {
+    return id;
   }
 
-  public void setIo(Long io) {
-    this.io = io;
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getDescription() {
@@ -72,12 +73,12 @@ public class Recipe {
     this.prepTime = prepTime;
   }
 
-  public Integer getDcookTime() {
-    return dcookTime;
+  public Integer getCookTime() {
+    return cookTime;
   }
 
-  public void setDcookTime(Integer dcookTime) {
-    this.dcookTime = dcookTime;
+  public void setCookTime(Integer cookTime) {
+    this.cookTime = cookTime;
   }
 
   public Integer getServings() {
@@ -142,5 +143,13 @@ public class Recipe {
 
   public void setCategories(Set<Category> categories) {
     this.categories = categories;
+  }
+
+  public Set<Ingredient> getIngredients() {
+    return ingredients;
+  }
+
+  public void setIngredients(Set<Ingredient> ingredients) {
+    this.ingredients = ingredients;
   }
 }
