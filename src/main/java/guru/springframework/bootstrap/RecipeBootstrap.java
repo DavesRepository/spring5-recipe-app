@@ -5,31 +5,35 @@ import guru.springframework.domain.Ingredient;
 import guru.springframework.domain.Notes;
 import guru.springframework.domain.Recipe;
 import guru.springframework.domain.UnitOfMeasure;
-import guru.springframework.services.RecipeService;
+import guru.springframework.repositories.RecipeRepository;
+import guru.springframework.repositories.UnitOfMeasureRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Component
-public class DataLoader implements CommandLineRunner {
+public class RecipeBootstrap implements CommandLineRunner {
 
-  private RecipeService recipeService;
+  private final RecipeRepository recipeRepository;
+  private final UnitOfMeasureRepository unitOfMeasureRepository;
 
-  public DataLoader(RecipeService recipeService) {
-    this.recipeService = recipeService;
+  public RecipeBootstrap(RecipeRepository recipeRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
+    this.recipeRepository = recipeRepository;
+    this.unitOfMeasureRepository = unitOfMeasureRepository;
   }
 
   @Override
   public void run(String... args) {
-    createSpiceyGrilledChcikenTacosRecipe();
-    createGuacamoleRecipe();
-
-
+    final ArrayList<Recipe> recipes = new ArrayList<>();
+    recipes.add(createSpiceyGrilledChcikenTacosRecipe());
+    recipes.add(createGuacamoleRecipe());
+    recipeRepository.saveAll(recipes);
   }
 
-  private void createSpiceyGrilledChcikenTacosRecipe(){
+  private Recipe createSpiceyGrilledChcikenTacosRecipe(){
     final Recipe recipe = new Recipe();
     recipe.setDescription("Spicy Grilled Chicken Tacos Recipe");
     recipe.setUrl("https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
@@ -82,10 +86,10 @@ public class DataLoader implements CommandLineRunner {
     recipe.getIngredients().add(createIngredient(recipe, "0.5", findUOM("Cup"), "sour cream thinned with 1/4 cup milk"));
     recipe.getIngredients().add(createIngredient(recipe, "1", "lime, cut into wedges"));
 
-    recipeService.save(recipe);
+    return recipe;
   }
 
-  private void createGuacamoleRecipe() {
+  private Recipe createGuacamoleRecipe() {
     final Recipe recipe = new Recipe();
     recipe.setDescription("How to Make Perfect Guacamole Recipe");
     recipe.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
@@ -119,11 +123,11 @@ public class DataLoader implements CommandLineRunner {
     recipe.getIngredients().add(createIngredient(recipe, "1", findUOM("Dash"), "freshly grated black pepper"));
     recipe.getIngredients().add(createIngredient(recipe, "0.5", "ripe tomato, seeds and pulp removed, chopped"));
 
-    recipeService.save(recipe);
+   return recipe;
   }
 
   private UnitOfMeasure findUOM(String description) {
-    final Optional<UnitOfMeasure> optionalTeaspoon = recipeService.findByDescription(description);
+    final Optional<UnitOfMeasure> optionalTeaspoon = unitOfMeasureRepository.findByDescription(description);
     if (optionalTeaspoon.isPresent()){
       return optionalTeaspoon.get();
     } else{
