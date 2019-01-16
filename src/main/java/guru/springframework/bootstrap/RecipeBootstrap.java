@@ -43,7 +43,6 @@ public class RecipeBootstrap implements CommandLineRunner {
     recipe.setDifficulty(Difficulty.MODERATE);
     recipe.setSource("Sally Vargas; A freelance writer and the author of three cookbooks ");
     recipe.setNotes(createNotes(
-        recipe,
         "<p><b>11 Prepare a gas or charcoal grill for medium-high, direct heat</b></p>" +
             "" +
         "<p><b>2 Make the marinade and coat the chicken:</b> In a large bowl, stir together the chili powder, oregano, cumin," +
@@ -65,26 +64,26 @@ public class RecipeBootstrap implements CommandLineRunner {
         "  with lime wedges.</p>"));
 
     //ingredients
-    recipe.getIngredients().add(createIngredient(recipe, "2", findUOM("Tablespoon"), "ancho chili powder"));
-    recipe.getIngredients().add(createIngredient(recipe, "1", findUOM("Teaspoon"), "dried oregano"));
-    recipe.getIngredients().add(createIngredient(recipe, "1", findUOM("Teaspoon"), "dried cumin"));
-    recipe.getIngredients().add(createIngredient(recipe, "1", findUOM("Teaspoon"), "sugar"));
-    recipe.getIngredients().add(createIngredient(recipe, "0.5", findUOM("Teaspoon"), "salt"));
-    recipe.getIngredients().add(createIngredient(recipe, "1", findUOM("Clove"), "garlic, finely chopped"));
-    recipe.getIngredients().add(createIngredient(recipe, "1", findUOM("Tablespoon"), "finely grated orange zest"));
-    recipe.getIngredients().add(createIngredient(recipe, "3", findUOM("Tablespoon"), "fresh-squeezed orange juice"));
-    recipe.getIngredients().add(createIngredient(recipe, "5", "skinless, boneless chicken thighs (1 1/4 pounds)"));
+    recipe.addIngredient(createIngredient("2", findUOM("Tablespoon"), "ancho chili powder"));
+    recipe.addIngredient(createIngredient("1", findUOM("Teaspoon"), "dried oregano"));
+    recipe.addIngredient(createIngredient("1", findUOM("Teaspoon"), "dried cumin"));
+    recipe.addIngredient(createIngredient("1", findUOM("Teaspoon"), "sugar"));
+    recipe.addIngredient(createIngredient("0.5", findUOM("Teaspoon"), "salt"));
+    recipe.addIngredient(createIngredient("1", findUOM("Clove"), "garlic, finely chopped"));
+    recipe.addIngredient(createIngredient("1", findUOM("Tablespoon"), "finely grated orange zest"));
+    recipe.addIngredient(createIngredient("3", findUOM("Tablespoon"), "fresh-squeezed orange juice"));
+    recipe.addIngredient(createIngredient("5", "skinless, boneless chicken thighs (1 1/4 pounds)"));
 
     //to serve
-    recipe.getIngredients().add(createIngredient(recipe, "5", "small corn tortillas"));
-    recipe.getIngredients().add(createIngredient(recipe, "3", "3 cups packed baby arugula (3 ounces)"));
-    recipe.getIngredients().add(createIngredient(recipe, "2", "2 medium ripe avocados, sliced"));
-    recipe.getIngredients().add(createIngredient(recipe, "4", "4 radishes, thinly sliced"));
-    recipe.getIngredients().add(createIngredient(recipe, "0.5", findUOM("Pint"), "cherry tomatoes, halved"));
-    recipe.getIngredients().add(createIngredient(recipe, "0.25", "red onion, thinly sliced"));
-    recipe.getIngredients().add(createIngredient(recipe, "1", "Roughly chopped cilantro"));
-    recipe.getIngredients().add(createIngredient(recipe, "0.5", findUOM("Cup"), "sour cream thinned with 1/4 cup milk"));
-    recipe.getIngredients().add(createIngredient(recipe, "1", "lime, cut into wedges"));
+    recipe.addIngredient(createIngredient("5", "small corn tortillas"));
+    recipe.addIngredient(createIngredient("3", "3 cups packed baby arugula (3 ounces)"));
+    recipe.addIngredient(createIngredient("2", "2 medium ripe avocados, sliced"));
+    recipe.addIngredient(createIngredient("4", "4 radishes, thinly sliced"));
+    recipe.addIngredient(createIngredient("0.5", findUOM("Pint"), "cherry tomatoes, halved"));
+    recipe.addIngredient(createIngredient("0.25", "red onion, thinly sliced"));
+    recipe.addIngredient(createIngredient("1", "Roughly chopped cilantro"));
+    recipe.addIngredient(createIngredient("0.5", findUOM("Cup"), "sour cream thinned with 1/4 cup milk"));
+    recipe.addIngredient(createIngredient("1", "lime, cut into wedges"));
 
     return recipe;
   }
@@ -99,7 +98,6 @@ public class RecipeBootstrap implements CommandLineRunner {
     recipe.setDifficulty(Difficulty.EASY);
     recipe.setSource("Elise Bauer;  The founder of Simply Recipes");
     recipe.setNotes(createNotes(
-        recipe,
         "<p><b>1 Cut avocado, remove flesh:</b> Cut the avocados in half. Remove seed. " +
         "Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon. " +
         "Place in a bowl. </p>" +
@@ -114,14 +112,14 @@ public class RecipeBootstrap implements CommandLineRunner {
         "prevent air reaching it. (The oxygen in the air causes oxidation which will turn the guacamole brown.) " +
         "Refrigerate until ready to serve. </p>"));
 
-    recipe.getIngredients().add(createIngredient(recipe, "2", "ripe advocados"));
-    recipe.getIngredients().add(createIngredient(recipe, "0.5", findUOM("Teaspoon"), "ripe advocados"));
-    recipe.getIngredients().add(createIngredient(recipe, "1", findUOM("Tablespoon"), "fresh lime juice or lemon juice"));
-    recipe.getIngredients().add(createIngredient(recipe, "3", findUOM("Tablespoon"), "minced red onion or thinly sliced green onion"));
-    recipe.getIngredients().add(createIngredient(recipe, "2", "serrano chiles, stems and seeds removed, minced"));
-    recipe.getIngredients().add(createIngredient(recipe, "2", "tablespoons cilantro (leaves and tender stems), finely chopped"));
-    recipe.getIngredients().add(createIngredient(recipe, "1", findUOM("Dash"), "freshly grated black pepper"));
-    recipe.getIngredients().add(createIngredient(recipe, "0.5", "ripe tomato, seeds and pulp removed, chopped"));
+    recipe.addIngredient(createIngredient("2", "ripe advocados"));
+    recipe.addIngredient(createIngredient("0.5", findUOM("Teaspoon"), "ripe advocados"));
+    recipe.addIngredient(createIngredient("1", findUOM("Tablespoon"), "fresh lime juice or lemon juice"));
+    recipe.addIngredient(createIngredient("3", findUOM("Tablespoon"), "minced red onion or thinly sliced green onion"));
+    recipe.addIngredient(createIngredient("2", "serrano chiles, stems and seeds removed, minced"));
+    recipe.addIngredient(createIngredient("2", "tablespoons cilantro (leaves and tender stems), finely chopped"));
+    recipe.addIngredient(createIngredient("1", findUOM("Dash"), "freshly grated black pepper"));
+    recipe.addIngredient(createIngredient("0.5", "ripe tomato, seeds and pulp removed, chopped"));
 
    return recipe;
   }
@@ -135,22 +133,20 @@ public class RecipeBootstrap implements CommandLineRunner {
     }
   }
 
-  private Notes createNotes(Recipe recipe, String recipeNotes) {
+  private Notes createNotes(String recipeNotes) {
     final Notes notes = new Notes();
-    notes.setRecipe(recipe);
     notes.setRecipeNotes(recipeNotes);
     return notes;
   }
 
-  private Ingredient createIngredient(Recipe recipe, String amount, UnitOfMeasure unitOfMeasure, String description) {
+  private Ingredient createIngredient(String amount, UnitOfMeasure unitOfMeasure, String description) {
     final Ingredient ingredient = new Ingredient();
-    ingredient.setRecipe(recipe);
     ingredient.setAmount(new BigDecimal(amount));
     ingredient.setDescription(description);
     ingredient.setUom(unitOfMeasure);
     return ingredient;
   }
-  private Ingredient createIngredient(Recipe recipe, String amount, String description) {
-    return createIngredient(recipe, amount, null, description);
+  private Ingredient createIngredient(String amount, String description) {
+    return createIngredient(amount, null, description);
   }
 }
